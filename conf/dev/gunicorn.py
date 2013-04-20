@@ -2,11 +2,11 @@ import multiprocessing
 import os
 import sys
 
-sys.path.append('/projects/{{ project_name }}dev/{{ project_name }}/')
 
 bind = 'unix:/var/tmp/{{ project_name }}dev.sock'
 pidfile = '/var/tmp/{{ project_name }}dev.pid'
 django_settings = '{{ project_name }}.settings.dev'
+pythonpath = '/projects/{{ project_name }}dev/{{ project_name }}/'
 
 workers = multiprocessing.cpu_count() + 1
 
