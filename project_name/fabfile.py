@@ -22,12 +22,16 @@ def prod():
     env.supervisord_name = '{{ project_name }}prod'
 
 def deploy():
+    push()
     pull()
     install_requirements()
     syncdb()
     migrate()
     collectstatic()
     restart_workers()
+
+def push():
+    local('git push origin')
 
 def pull():
     with prefix(env.prefix):
