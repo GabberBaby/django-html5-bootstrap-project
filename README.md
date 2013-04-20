@@ -1,7 +1,7 @@
 django-html5-bootstrap-project
 ==============================
 
-Django project template with HTML5 boilerplate and Twitter bootstrap. It also contains configurations for 2 deployment environments (development and production). The configurations include files for [Nginx](http://nginx.org/), [Supervisor](http://supervisord.org/) and [Gunicorn](http://gunicorn.org/).
+Django project template with HTML5 boilerplate and Twitter bootstrap. It also contains configurations for 2 deployment environments (development and production). It includes configurations for [Nginx](http://nginx.org/), [Supervisor](http://supervisord.org/) and [Gunicorn](http://gunicorn.org/).
 
 
 Usage
