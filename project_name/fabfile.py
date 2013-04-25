@@ -58,3 +58,21 @@ def restart_workers():
 
 def restart_webserver():
     sudo('/etc/init.d/nginx reload')
+
+def prepare_server():
+    sudo("aptitude update")
+    packages = [
+        'nginx', 'postgresql-9.1', 'supervisor', 'gunicorn',
+        'python-virtualenv', 'virtualenvwrapper', 'git',
+        'postgresql-server-dev-9.1', 'python-dev',
+    ]
+    sudo('aptitude install %s' % ' '.join(packages))
+    sudo('mkdir -p /projects/.python-env')
+    sudo('addgroup developers')
+    sudo('adduser `whoami` developers')
+    sudo('chown -R `whoami`:developers /projects')
+    # TODO: Load virtualenvwrapper
+    with prefix('export WORKON_HOME=/projects/.python-env/'):
+        run('mkvirtualenv {{ project_name }}dev')
+        run('mkvirtualenv {{ project_name }}prod')
+
