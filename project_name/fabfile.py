@@ -9,7 +9,9 @@ def dev():
     env.project_path = '/projects/{{ project_name }}dev/{{ project_name }}'
     env.virtualenv_path = '/projects/.python-env/{{ project_name }}dev'
     env.activate_cmd = ('source %s/bin/activate' % env.virtualenv_path)
-    env.prefix = '%s && cd %s' % (env.activate_cmd, env.project_path)
+    env.settings_cmd = 'export DJANGO_SETTINGS_MODULE={{ project_name }}.settings.dev'
+    env.prefix = ('%s && cd %s && %s' % (env.activate_cmd, env.project_path,
+        env.settings_cmd))
     env.supervisord_name = '{{ project_name }}dev'
 
 def prod():
@@ -18,7 +20,9 @@ def prod():
     env.project_path = '/projects/{{ project_name }}prod/{{ project_name }}'
     env.virtualenv_path = '/projects/.python-env/{{ project_name }}prod'
     env.activate_cmd = ('source %s/bin/activate' % env.virtualenv_path)
-    env.prefix = '%s && cd %s' % (env.activate_cmd, env.project_path)
+    env.settings_cmd = 'export DJANGO_SETTINGS_MODULE={{ project_name }}.settings.prod'
+    env.prefix = ('%s && cd %s && %s' % (env.activate_cmd, env.project_path,
+        env.settings_cmd))
     env.supervisord_name = '{{ project_name }}prod'
 
 def deploy():
